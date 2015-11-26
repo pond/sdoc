@@ -104,8 +104,8 @@
       <div class="sectiontitle">Constants</div>
       <table border='0' cellpadding='5'>
         <% context.each_constant do |const| %>
-          <tr valign='top'>
-            <td class="attr-name"><a name="<%= h const.name %>"><%= h const.name %></a></td>
+          <tr valign='top' id='<%= h const.name %>'>
+            <td class="attr-name"><%= h const.name %></td>
             <td>=</td>
             <td class="attr-value"><pre><%= h const.value %></pre></td>
           </tr>
@@ -124,11 +124,11 @@
       <div class="sectiontitle">Attributes</div>
       <table border='0' cellpadding='5'>
         <% attributes.each do |attrib| %>
-          <tr valign='top'>
+          <tr valign='top' id='<%= h attrib.aref %>'>
             <td class='attr-rw'>
               [<%= attrib.rw %>]
             </td>
-            <td class='attr-name'><a name="<%= h attrib.name %>"><%= h attrib.name %></a></td>
+            <td class='attr-name'><%= h attrib.name %></td>
             <td class='attr-desc'><%= attrib.description.strip %></td>
           </tr>
         <% end %>
