@@ -1,5 +1,4 @@
 require 'erubis'
-require "sdoc"
 
 module SDoc::Templatable
   ### Load and render the erb template in the given +templatefile+ within the
@@ -13,12 +12,14 @@ module SDoc::Templatable
     begin
       template.result( context )
     rescue NoMethodError => err
-      raise RDoc::Error, "Error while evaluating %s: %s (at %p)" % [
-        templatefile.to_s,
-        err.message,
-        eval( "_erbout[-50,50]", context )
-        ], err.backtrace
-      end
+      raise RDoc::Error,
+            "Error while evaluating %s: %s (at %p)" % [
+              templatefile.to_s,
+              err.message,
+              eval( "_erbout[-50,50]", context )
+            ],
+            err.backtrace
+    end
   end
 
   ### Load and render the erb template with the given +template_name+ within
@@ -43,8 +44,7 @@ module SDoc::Templatable
       else
         output = output.gsub('<script>', '&lt;script&gt;')
       end
-    rescue Exception => e
-
+    rescue Exception
     end
 
     unless $dryrun

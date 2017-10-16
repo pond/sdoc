@@ -23,7 +23,7 @@ describe RDoc::Generator::SDoc do
       @parser.parse %w[--github]
     end
 
-    err.wont_match /^invalid options/
+    err.wont_match( /^invalid options/ )
     @options.github.must_equal true
   end
 
@@ -34,7 +34,7 @@ describe RDoc::Generator::SDoc do
       @parser.parse %w[-g]
     end
 
-    err.wont_match /^invalid options/
+    err.wont_match( /^invalid options/ )
     @options.github.must_equal true
   end
 
@@ -45,7 +45,7 @@ describe RDoc::Generator::SDoc do
       @parser.parse %w[--without-search]
     end
 
-    err.wont_match /^invalid options/
+    err.wont_match( /^invalid options/ )
     @options.search_index.must_equal false
   end
 
@@ -55,7 +55,7 @@ describe RDoc::Generator::SDoc do
       @parser.parse %w[-s]
     end
 
-    err.wont_match /^invalid options/
+    err.wont_match( /^invalid options/ )
     @options.search_index.must_equal false
   end
 

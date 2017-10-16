@@ -1,12 +1,12 @@
 ---
 rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - ruby-head
-  - jruby-19mode
-  - jruby-head
-notifications:
-  recipients:
-    - zachary@zacharyscott.net
+  - 2.3.5
+  - 2.4.2
+
+# http://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/
+#
+sudo: false
+
+# http://docs.travis-ci.com/user/caching/
+#
+cache: bundler
