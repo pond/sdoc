@@ -1,7 +1,4 @@
----
-rvm:
-  - 2.3.5
-  - 2.4.2
+language: ruby
 
 # http://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/
 #
@@ -10,3 +7,30 @@ sudo: false
 # http://docs.travis-ci.com/user/caching/
 #
 cache: bundler
+before_install:
+  - gem install bundler
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
+  - 2.3.5
+  - 2.4.2
+  - ruby-head
+  - jruby-19mode
+  - jruby-head
+
+matrix:
+  allow_failures:
+    - env: rdoc=master
+    - rvm: jruby-head
+  include:
+    - { rvm: 1.9.3, env: rdoc=master }
+    - { rvm: 2.0.0, env: rdoc=master }
+    - { rvm: 2.1.0, env: rdoc=master }
+    - { rvm: 2.2.0, env: rdoc=master }
+    - { rvm: 2.3.0, env: rdoc=master }
+    - { rvm: ruby-head, env: rdoc=master }
+    - { rvm: jruby-19mode, env: rdoc=master }
+    - { rvm: jruby-head, env: rdoc=master }

@@ -1,4 +1,4 @@
-require 'erubis'
+require 'erb'
 
 module SDoc::Templatable
   ### Load and render the erb template in the given +templatefile+ within the
@@ -6,7 +6,7 @@ module SDoc::Templatable
   ### Both +templatefile+ and +outfile+ should be Pathname-like objects.
   def eval_template(templatefile, context)
     template_src = templatefile.read
-    template = Erubis::Eruby.new(template_src, :trim => true)
+    template = ERB.new( template_src, nil, '<>' )
     template.filename = templatefile.to_s
 
     begin
