@@ -1,8 +1,8 @@
 <html>
     <head>File index</head>
     <body>
-    <% @files.each do |file| %>
+<% @files.each do |file| %>
       <a href="../<%= file.path %>"><%= file.relative_name %></a>
-    <% end %>
+<% end %>
     </body>
 </html>

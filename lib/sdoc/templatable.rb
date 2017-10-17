@@ -1,5 +1,4 @@
-require 'erubis'
-require "sdoc"
+require 'erb'
 
 module SDoc::Templatable
   ### Load and render the erb template in the given +templatefile+ within the
@@ -7,18 +6,20 @@ module SDoc::Templatable
   ### Both +templatefile+ and +outfile+ should be Pathname-like objects.
   def eval_template(templatefile, context)
     template_src = templatefile.read
-    template = Erubis::Eruby.new(template_src, :trim => true)
+    template = ERB.new( template_src, nil, '<>' )
     template.filename = templatefile.to_s
 
     begin
       template.result( context )
     rescue NoMethodError => err
-      raise RDoc::Error, "Error while evaluating %s: %s (at %p)" % [
-        templatefile.to_s,
-        err.message,
-        eval( "_erbout[-50,50]", context )
-        ], err.backtrace
-      end
+      raise RDoc::Error,
+            "Error while evaluating %s: %s (at %p)" % [
+              templatefile.to_s,
+              err.message,
+              eval( "_erbout[-50,50]", context )
+            ],
+            err.backtrace
+    end
   end
 
   ### Load and render the erb template with the given +template_name+ within
@@ -43,8 +44,7 @@ module SDoc::Templatable
       else
         output = output.gsub('<script>', '&lt;script&gt;')
       end
-    rescue Exception => e
-
+    rescue Exception
     end
 
     unless $dryrun

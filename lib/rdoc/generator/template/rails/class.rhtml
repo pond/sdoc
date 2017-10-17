@@ -1,11 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title><%= h klass.full_name %></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=<%= @options.charset %>" />
+    <meta charset="<%= @options.charset %>" />
     <%= include_template '_head.rhtml', {:rel_prefix => rel_prefix} %>
+
+    <meta property="og:title" value="<%= klass.full_name %>">
+
+  <% unless (description = klass.description).empty? %>
+    <% human_desc = truncate(strip_tags(description.gsub("\n", " ").strip)) %>
+    <meta name="description" content="<%= human_desc %>">
+    <meta property="og:description" content="<%= human_desc %>">
+  <% end %>
+
+    <meta name="keywords" content="<%= klass.full_name %> class">
+  <% unless klass.method_list.empty? %>
+    <meta name="keywords" content="<%= klass.method_list.map(&:name).join(", ") %>">
+  <% end %>
 </head>
 
 <body>
