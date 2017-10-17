@@ -9,40 +9,40 @@
 
     <meta property="og:title" value="<%= klass.full_name %>">
 
-<% unless (description = klass.description).empty? -%>
-<%   human_desc = truncate(strip_tags(description.gsub("\n", " ").strip)) -%>
+<% unless (description = klass.description).empty? %>
+<%   human_desc = truncate(strip_tags(description.gsub("\n", " ").strip)) %>
     <meta name="description" content="<%= human_desc %>">
     <meta property="og:description" content="<%= human_desc %>">
-<% end -%>
+<% end %>
 
     <meta name="keywords" content="<%= klass.full_name %> class">
-<% unless klass.method_list.empty? -%>
+<% unless klass.method_list.empty? %>
     <meta name="keywords" content="<%= klass.method_list.map(&:name).join(", ") %>">
-<% end -%>
+<% end %>
 </head>
 
 <body>
     <div class="banner">
-<% if ENV['HORO_PROJECT_NAME'] -%>
+<% if ENV['HORO_PROJECT_NAME'] %>
         <span><%= ERB::Util.html_escape(ENV['HORO_PROJECT_NAME']) %> <%= ERB::Util.html_escape(ENV['HORO_PROJECT_VERSION']) %></span><br />
 <% end %>
         <h1>
             <span class="type"><%= klass.module? ? 'Module' : 'Class' %></span>
             <%= h klass.full_name %>
-<% if klass.type == 'class' -%>
+<% if klass.type == 'class' %>
             <span class="parent">&lt;
-<%   if String === klass.superclass -%>
+<%   if String === klass.superclass %>
                 <%= klass.superclass %>
-<%   elsif !klass.superclass.nil? -%>
+<%   elsif !klass.superclass.nil? %>
                 <a href="<%= klass.aref_to klass.superclass.path %>"><%= h klass.superclass.full_name %></a>
-<%   end -%>
+<%   end %>
             </span>
-<% end -%>
+<% end %>
         </h1>
         <ul class="files">
-<% klass.in_files.each do |file| -%>
+<% klass.in_files.each do |file| %>
             <li><a href="<%= "#{rel_prefix}/#{h file.path}" %>"><%= h file.absolute_name %></a></li>
-<% end -%>
+<% end %>
         </ul>
     </div>
     <div id="bodyContent">
