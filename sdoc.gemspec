@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
     s.platform = Gem::Platform.new(['universal', 'java', nil])
     s.add_runtime_dependency("json_pure", "~> 1.7", ">= 1.7.7")
   else
-    s.add_runtime_dependency("json", "~> 1.7", ">= 1.7.7")
+    s.add_runtime_dependency("json", "~> 2.1")
   end
 
   s.add_development_dependency "bundler", "~> 1.3"
