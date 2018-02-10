@@ -15,9 +15,6 @@ matrix:
     - env: rdoc=master
     - rvm: jruby-head
   include:
-    - { rvm: 1.9.3, env: rdoc=master }
-    - { rvm: 2.0.0, env: rdoc=master }
-    - { rvm: 2.1.0, env: rdoc=master }
     - { rvm: 2.2.9, env: rdoc=master }
     - { rvm: 2.3.6, env: rdoc=master }
     - { rvm: 2.4.2, env: rdoc=master }
