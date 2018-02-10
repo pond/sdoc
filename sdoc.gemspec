@@ -22,13 +22,13 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = ["README.md"]
 
-  s.add_runtime_dependency("rdoc", "~> 5.1")
+  s.add_runtime_dependency("rdoc", ">= 5.0")
 
   if defined?(JRUBY_VERSION)
     s.platform = Gem::Platform.new(['universal', 'java', nil])
     s.add_runtime_dependency("json_pure", "~> 1.7", ">= 1.7.7")
   else
-    s.add_runtime_dependency("json", "~> 1.7", ">= 1.7.7")
+    s.add_runtime_dependency("json")
   end
 
   s.add_development_dependency "bundler", "~> 1.3"
