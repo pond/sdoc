@@ -30,10 +30,16 @@
     <!-- Namespace -->
     <div class="sectiontitle">Namespace</div>
     <ul>
-<%   (context.modules.sort + context.classes.sort).each do |mod| %>
+<%   (context.modules.sort + context.classes.sort).each do |mod|
+       mod_path = mod.path rescue nil
+%>
         <li>
             <span class="type"><%= mod.type.upcase %></span>
-            <a href="<%= context.aref_to mod.path %>"><%= mod.full_name %></a>
+<%          if mod_path.nil? %>
+              <%= mod.full_name %>
+<%          else %>
+              <a href="<%= context.aref_to mod_path %>"><%= mod.full_name %></a>
+<%          end %>
         </li>
 <%   end %>
     </ul>
